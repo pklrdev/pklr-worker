@@ -5,6 +5,10 @@ on:
     tags:
       - '*'
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,11 +23,11 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: pklrdev
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           file: Pklr.Worker/Dockerfile
           push: true
-          tags: pklrdev/pklr-worker:${{ steps.version.outputs.version }}
+          tags: ghcr.io/pklrdev/pklr-worker:${{ steps.version.outputs.version }}
