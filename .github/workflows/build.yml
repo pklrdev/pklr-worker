@@ -26,4 +26,4 @@ jobs:
         with:
           file: Pklr.Worker/Dockerfile
           push: true
-          tags: ${{ github.actor }}/pklr-worker:${{ steps.version.outputs.version }}
+          tags: pklrdev/pklr-worker:${{ steps.version.outputs.version }}
